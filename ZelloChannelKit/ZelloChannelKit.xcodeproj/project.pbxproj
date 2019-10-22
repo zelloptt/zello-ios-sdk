@@ -80,7 +80,7 @@
 		D13D1FE52074264F004D7EAD /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D13D1FE42074264F004D7EAD /* libicucore.tbd */; };
 		D1444841203CC0620091A061 /* ZCCStreamState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53AA9EAF1FDB69B700C35403 /* ZCCStreamState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D16A41F32075689A009783DF /* NSURLRequest+ZCCSRWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41C42075689A009783DF /* NSURLRequest+ZCCSRWebSocket.h */; };
-		D16A41F42075689A009783DF /* ZCCSRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41C52075689A009783DF /* ZCCSRWebSocket.m */; settings = {COMPILER_FLAGS = "-Wno-implicit-retain-self -Wno-sign-conversion"; }; };
+		D16A41F42075689A009783DF /* ZCCSRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41C52075689A009783DF /* ZCCSRWebSocket.m */; settings = {COMPILER_FLAGS = "-Wno-implicit-retain-self -Wno-sign-conversion -Wno-implicit-int-conversion"; }; };
 		D16A41F52075689A009783DF /* ZCCSRProxyConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41C72075689A009783DF /* ZCCSRProxyConnect.m */; settings = {COMPILER_FLAGS = "-Wno-sign-conversion"; }; };
 		D16A41F62075689A009783DF /* ZCCSRProxyConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41C82075689A009783DF /* ZCCSRProxyConnect.h */; };
 		D16A41F72075689A009783DF /* ZCCSRRunLoopThread.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41CA2075689A009783DF /* ZCCSRRunLoopThread.h */; };
@@ -100,7 +100,7 @@
 		D16A42062075689A009783DF /* ZCCSRError.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41DC2075689A009783DF /* ZCCSRError.h */; };
 		D16A42072075689A009783DF /* ZCCSRHTTPConnectMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41DD2075689A009783DF /* ZCCSRHTTPConnectMessage.h */; };
 		D16A42082075689A009783DF /* ZCCSRRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41DE2075689A009783DF /* ZCCSRRandom.m */; };
-		D16A42092075689A009783DF /* ZCCSRURLUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41DF2075689A009783DF /* ZCCSRURLUtilities.m */; };
+		D16A42092075689A009783DF /* ZCCSRURLUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41DF2075689A009783DF /* ZCCSRURLUtilities.m */; settings = {COMPILER_FLAGS = "-Wno-switch"; }; };
 		D16A420A2075689A009783DF /* ZCCSRLog.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41E02075689A009783DF /* ZCCSRLog.m */; };
 		D16A420B2075689A009783DF /* ZCCSRConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41E12075689A009783DF /* ZCCSRConstants.m */; settings = {COMPILER_FLAGS = "-Wno-sign-conversion"; }; };
 		D16A420C2075689A009783DF /* ZCCSRHash.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41E22075689A009783DF /* ZCCSRHash.h */; };

@@ -821,7 +821,7 @@ typedef NS_ENUM(NSInteger, ZCCSocketRequestType) {
       [self reportInvalidJSONInMessage:ZCCEventOnImage key:ZCCImageWidthKey errorDescription:@"width out of range" original:original];
       return;
     }
-    header.width = widthValue;
+    header.width = (NSInteger)widthValue;
   }
 
   id<ZCCSocketDelegate> delegate = self.delegate;
