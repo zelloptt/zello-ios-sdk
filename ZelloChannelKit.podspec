@@ -108,6 +108,11 @@ The protocol specification is also available if you prefer to develop your own c
   spec.subspec 'libopus' do |opus|
     opus.source_files = "LibOpus/CSource/**/*.{h,cpp}"
     opus.compiler_flags = "-Wno-implicit-retain-self"
+    opus.library = "c++"
+    opus.xcconfig = {
+      'CLANG_CXX_LANGUAGE_STANDARD' => 'c++11',
+      'CLANG_CXX_LIBRARY' => 'libc++'
+    }
     opus.vendored_library = "ZelloChannelKit/ZelloChannelKit/libopus.a"
   end
 
@@ -129,7 +134,7 @@ The protocol specification is also available if you prefer to develop your own c
 
   # spec.library   = "iconv"
   # spec.libraries = "iconv", "xml2"
-  spec.library = "icucore"
+  spec.libraries = "icucore", "c++"
   # spec.vendored_libraries = "ZelloChannelKit/ZelloChannelKit/libopus.a"
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
