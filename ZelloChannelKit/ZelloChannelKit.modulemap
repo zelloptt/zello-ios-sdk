@@ -1,0 +1,6 @@
+framework module "ZelloChannelKit" {
+  umbrella header "ZelloChannelKit.h"
+
+  export *
+  module * { export * }
+}

@@ -17,8 +17,8 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "ZelloChannelKit"
-  spec.version      = "0.5.0"
-  spec.summary      = "A short description of ZelloChannelKit."
+  spec.version      = "0.5.1"
+  spec.summary      = "WebSocket based API to connect to Zello channels"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -101,12 +101,26 @@ The protocol specification is also available if you prefer to develop your own c
   spec.source_files  = "ZelloChannelKit/ZelloChannelKit/**/*.{h,m,mm}"
   # spec.exclude_files = "Classes/Exclude"
 
-  spec.public_header_files = "ZelloChannelKit/ZelloChannelKit/{ZelloChannelKit.h,ZCCErrors.h,images/ZCCImageInfo.h,streams/ZCCIncomingVoiceConfiguration.h,streams/ZCCIncomingVoiceStream.h,location/ZCCLocationInfo.h,streams/ZCCOutgoingVoiceConfiguration.h,streams/ZCCOutgoingVoiceStream.h,ZCCSession.h,streams/ZCCStreamState.h,ZCCTypes.h,streams/ZCCVoiceStream.h}"
-
-
+  spec.public_header_files = [
+    "ZelloChannelKit/ZelloChannelKit/ZelloChannelKit.h",
+    "ZelloChannelKit/ZelloChannelKit/ZCCErrors.h",
+    "ZelloChannelKit/ZelloChannelKit/images/ZCCImageInfo.h",
+    "ZelloChannelKit/ZelloChannelKit/streams/ZCCIncomingVoiceConfiguration.h",
+    "ZelloChannelKit/ZelloChannelKit/streams/zCCIncomingVoiceStream.h",
+    "ZelloChannelKit/ZelloChannelKit/location/ZCCLocationInfo.h",
+    "ZelloChannelKit/ZelloChannelKit/streams/ZCCOutgoingVoiceConfiguration.h",
+    "ZelloChannelKit/ZelloChannelKit/streams/ZCCOutgoingVoiceStream.h",
+    "ZelloChannelKit/ZelloChannelKit/ZCCSession.h",
+    "ZelloChannelKit/ZelloChannelKit/streams/ZCCStreamState.h",
+    "ZelloChannelKit/ZelloChannelKit/ZCCTypes.h",
+    "ZelloChannelKit/ZelloChannelKit/streams/ZCCVoiceStream.h"
+  ]
+  
   # libopus
   spec.subspec 'libopus' do |opus|
     opus.source_files = "LibOpus/CSource/**/*.{h,cpp}"
+    opus.private_header_files = "LibOpus/CSource/**/*.h"
+    opus.preserve_paths = "LibOpus/CSource/include/opus/*.h"
     opus.compiler_flags = "-Wno-implicit-retain-self"
     opus.library = "c++"
     opus.xcconfig = {
@@ -119,10 +133,13 @@ The protocol specification is also available if you prefer to develop your own c
   # SocketRocket
   spec.subspec 'SocketRocket' do |sr|
     sr.source_files = "ZelloChannelKit/ZelloChannelKit/network/SocketRocket/**/*.{h,m}"
+    sr.private_header_files = "ZelloChannelKit/ZelloChannelKit/network/SocketRocket/**/*.h"
     sr.compiler_flags = "-Wno-implicit-retain-self", "-Wno-switch"
   end
   
-  
+  spec.module_map = "ZelloChannelKit/ZelloChannelKit.modulemap"
+
+
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  Link your library with frameworks, or libraries. Libraries do not include
