@@ -57,7 +57,6 @@ The protocol specification is also available if you prefer to develop your own c
     sr.compiler_flags = "-Wno-implicit-retain-self", "-Wno-switch"
   end
   
-  spec.module_map = "ZelloChannelKit/ZelloChannelKit.modulemap"
   spec.libraries = "icucore", "c++"
 
 end

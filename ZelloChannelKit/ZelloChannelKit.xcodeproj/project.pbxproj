@@ -324,7 +324,6 @@
 		D16DC03A2069801B003F9A6A /* SocketRocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SocketRocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D17DBAB5232842F500EE970A /* ZCCIncomingImageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCCIncomingImageInfo.h; sourceTree = "<group>"; };
 		D17DBAB6232842F500EE970A /* ZCCIncomingImageInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCCIncomingImageInfo.m; sourceTree = "<group>"; };
-		D18F264A23638C560073C4B7 /* ZelloChannelKit.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = ZelloChannelKit.modulemap; sourceTree = "<group>"; };
 		D19CBF38233934D20065C775 /* ZCCTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCCTypes.h; sourceTree = "<group>"; };
 		D19DBC58205095CD005C632A /* ZCCCustomAudioSourceReceiver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCCCustomAudioSourceReceiver.h; sourceTree = "<group>"; };
 		D19DBC59205095CD005C632A /* ZCCCustomAudioSourceReceiver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCCCustomAudioSourceReceiver.m; sourceTree = "<group>"; };
@@ -583,7 +582,6 @@
 		A8043FA11FD5BE9000BFD1BF = {
 			isa = PBXGroup;
 			children = (
-				D18F264A23638C560073C4B7 /* ZelloChannelKit.modulemap */,
 				D1441BCE206EB757009F22DE /* AppledocSettings.plist */,
 				A8043FAD1FD5BE9000BFD1BF /* ZelloChannelKit */,
 				A8043FB81FD5BE9000BFD1BF /* ZelloChannelKitTests */,
