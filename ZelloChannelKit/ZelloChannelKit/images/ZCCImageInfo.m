@@ -51,7 +51,7 @@
 #pragma mark - NSObject
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"<%@ %p id:%lu sender:%@ thumbnail? %@ image? %@>", NSStringFromClass([self class]), self, self.imageId, self.sender, (self.thumbnail ? @"YES" : @"NO"), (self.image ? @"YES" : @"NO")];
+  return [NSString stringWithFormat:@"<%@ %p id:%lu sender:%@ thumbnail? %@ image? %@>", NSStringFromClass([self class]), self, (unsigned long)self.imageId, self.sender, (self.thumbnail ? @"YES" : @"NO"), (self.image ? @"YES" : @"NO")];
 }
 
 @end
