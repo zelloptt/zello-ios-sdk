@@ -453,7 +453,6 @@ static void LogWarningForDevelopmentToken(NSString *token) {
 // them before calling our delegate
 
 - (void)socketDidOpen:(ZCCSocket *)socket {
-  NSLog(@"[ZCC] ZCCSocket did open");
   [self.runner runSync:^{
     self.nextReconnectDelay = 1.0;
 
@@ -464,8 +463,6 @@ static void LogWarningForDevelopmentToken(NSString *token) {
 }
 
 - (void)socketDidClose:(ZCCSocket *)socket withError:(nullable NSError *)socketError {
-  NSLog(@"[ZCC] socket closed with error %@", socketError);
-
   id<ZCCSessionDelegate> delegate = self.delegate;
   __block ZCCSessionState oldState;
   __block BOOL haveRefreshToken = NO;
@@ -488,7 +485,6 @@ static void LogWarningForDevelopmentToken(NSString *token) {
     BOOL wasReconnecting = self.refreshToken != nil;
     if (self.refreshToken) {
       if (shouldReconnect) {
-        NSLog(@"[ZCC] Have reconnect token; assuming unintentional disconnect and reconnecting");
         [self connectAfterDelay];
         return;
       }
@@ -533,7 +529,6 @@ static void LogWarningForDevelopmentToken(NSString *token) {
 }
 
 - (void)socket:(ZCCSocket *)socket didStartStreamWithId:(NSUInteger)streamId params:(ZCCStreamParams *)params channel:(NSString *)channel sender:(NSString *)senderName {
-  NSLog(@"[ZCC] Incoming stream started");
   id<ZCCSessionDelegate> delegate = self.delegate;
   ZCCIncomingVoiceConfiguration *configuration = nil;
   if ([delegate respondsToSelector:@selector(session:incomingVoiceWillStart:)]) {
@@ -544,12 +539,10 @@ static void LogWarningForDevelopmentToken(NSString *token) {
 }
 
 - (void)socket:(ZCCSocket *)socket didStopStreamWithId:(NSUInteger)streamId {
-  NSLog(@"[ZCC] Incoming stream stopped");
   [self.streamsManager onIncomingStreamStop:streamId];
 }
 
 - (void)socket:(ZCCSocket *)socket didReceiveAudioData:(NSData *)data streamId:(NSUInteger)streamId packetId:(NSUInteger)packetId {
-  NSLog(@"[ZCC] Incoming data for stream %ld (packet %ld)", (long)streamId, (long)packetId);
   [self.streamsManager onIncomingData:data streamId:streamId packetId:packetId];
 }
 
@@ -667,7 +660,6 @@ static void LogWarningForDevelopmentToken(NSString *token) {
     self.state = ZCCSessionStateError;
     [self disconnect];
 
-    NSLog(@"[ZCC] Logon error: %@", errorMessage ?: @"unknown");
     if (![delegate respondsToSelector:@selector(session:didFailToConnectWithError:)]) {
       return;
     }
