@@ -2,15 +2,18 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "ZelloChannelKit"
-  spec.version      = "0.5.1"
+  spec.version      = "0.5.2"
   spec.summary      = "WebSocket based API to connect to Zello channels"
   spec.description  = <<-DESC
-The Zello Channels SDK allows you to integrate Zello push-to-talk into your own application. The SDK communicates with a Zello server over a web socket connection using a JSON-based protocol, and offers a simple API for connecting to a Zello channel and sending and receiving audio. Supported features include:
+The Zello Channels SDK allows you to integrate Zello push-to-talk into your own application. The SDK communicates with a Zello server over a web socket connection using a JSON-based protocol, and offers a simple API to send and receive audio, images, and text over Zello channels. Supported features include:
 
 Send voice messages from the device microphone
 Play incoming voice messages through the device speaker
 Send voice messages from your own audio code, e.g. from a file
 Receive voice message data with your own audio code with optional pass-through to the device speaker
+Send and recieve text messages
+Send and receive images
+Send the device's current location, and receive location messages from other users
 The protocol specification is also available if you prefer to develop your own client in-house.
                    DESC
 
