@@ -627,6 +627,7 @@ typedef NS_ENUM(NSInteger, ZCCSocketRequestType) {
     [self reportInvalidJSONInMessage:ZCCEventOnStreamStart key:ZCCStreamCodecHeaderKey errorDescription:@"codec_header missing or invalid" original:original];
     return;
   }
+  header = [header stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
   NSData *headerData = [[NSData alloc] initWithBase64EncodedString:header options:0];
   if (!headerData) {
     [self reportInvalidJSONInMessage:ZCCEventOnStreamStart key:ZCCStreamCodecHeaderKey errorDescription:@"codec_header missing or invalid" original:original];
