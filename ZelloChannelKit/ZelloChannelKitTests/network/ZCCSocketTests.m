@@ -761,6 +761,36 @@ static BOOL messageIsEqualToDictionary(NSString *message, NSDictionary *expected
   [self verifyInvalidCommand:@"on_stream_start" message:command reportsErrorForKey:@"codec_header" description:@"codec_header missing or invalid"];
 }
 
+// Verify that we report an error if the codec header can't be decoded
+- (void)testOnStreamStart_invalidCodecHeader_reportsError {
+  NSMutableDictionary *event = [self.onStreamStartEvent mutableCopy];
+  event[@"codec_header"] = [NSString stringWithFormat:@"...%@", event[@"codec_header"]];
+  NSString *command = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:event options:0 error:NULL] encoding:NSUTF8StringEncoding];
+  [self verifyInvalidCommand:@"on_stream_start" message:command reportsErrorForKey:@"codec_header" description:@"codec_header missing or invalid"];
+}
+
+// Verify that we can correctly decode headers with trailing newlines
+- (void)testOnStreamStart_codecHeaderWithTrailingNewline_startsStream {
+  NSMutableDictionary *event = [self.onStreamStartEvent mutableCopy];
+  event[@"codec_header"] = [NSString stringWithFormat:@"%@\n", event[@"codec_header"]];
+  NSString *command = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:event options:0 error:NULL] encoding:NSUTF8StringEncoding];
+
+  ZCCStreamParams *expectedParams = [[ZCCStreamParams alloc] init];
+  expectedParams.type = @"audio";
+  expectedParams.codecName = @"opus";
+  expectedParams.codecHeader = [[NSData alloc] initWithBase64EncodedString:self.onStreamStartEvent[@"codec_header"] options:0];
+  expectedParams.packetDuration = 5;
+  XCTestExpectation *startedStream = [[XCTestExpectation alloc] initWithDescription:@"called delegate"];
+  OCMExpect([self.socketDelegate socket:self.socket didStartStreamWithId:12345 params:OCMOCK_ANY channel:@"test" sender:@"bogusSender"]).andDo(^(NSInvocation *invocation) {
+    [startedStream fulfill];
+  });
+
+  [self.socket webSocket:self.webSocket didReceiveMessageWithString:command];
+
+  XCTAssertEqual([XCTWaiter waitForExpectations:@[startedStream] timeout:2.0], XCTWaiterResultCompleted);
+  OCMVerifyAll(self.socketDelegate);
+}
+
 - (void)testOnStreamStart_missingPacketDuration_reportsError {
   NSString *command = [self onStreamStartEventWithoutKey:@"packet_duration"];
   [self verifyInvalidCommand:@"on_stream_start" message:command reportsErrorForKey:@"packet_duration" description:@"packet_duration missing or not a number"];
