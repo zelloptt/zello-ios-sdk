@@ -28,13 +28,30 @@
 #import "ZCCStreamParams.h"
 #import "ZCCVoiceStreamsManager.h"
 
+static NSString *convertFromBase64url(NSString *base64) {
+  NSMutableString *converting = [base64 mutableCopy];
+  [converting replaceOccurrencesOfString:@"-" withString:@"+" options:NSLiteralSearch range:NSMakeRange(0, converting.length)];
+  [converting replaceOccurrencesOfString:@"_" withString:@"/" options:NSLiteralSearch range:NSMakeRange(0, converting.length)];
+  if ((converting.length % 4) > 0) {
+    NSString *padding = @"===";
+    NSUInteger paddingCount = 4 - (converting.length % 4);
+    [converting appendString:[padding substringToIndex:paddingCount]];
+  }
+  return converting;
+}
+
 static void LogWarningForDevelopmentToken(NSString *token) {
   NSArray *parts = [token componentsSeparatedByString:@"."];
   if (parts.count < 3) {
     NSLog(@"[ZCC] Auth token not in valid JWT format");
     return;
   }
-  NSData *claimsData = [[NSData alloc] initWithBase64EncodedString:parts[1] options:0];
+  NSString *claimsBase64 = convertFromBase64url(parts[1]);
+  NSData *claimsData = [[NSData alloc] initWithBase64EncodedString:claimsBase64 options:0];
+  if (!claimsData) {
+    NSLog(@"[ZCC] Auth token not in valid Base64 encoding");
+    return;
+  }
   NSError *error = nil;
   NSDictionary *claims = [NSJSONSerialization JSONObjectWithData:claimsData options:0 error:&error];
   if (!claims) {
