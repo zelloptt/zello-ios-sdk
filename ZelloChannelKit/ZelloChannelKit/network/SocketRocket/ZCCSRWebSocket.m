@@ -19,7 +19,7 @@
 #import <unicode/utf8.h>
 #endif
 
-#import <libkern/OSAtomic.h>
+#import <os/lock.h>
 
 #import "ZCCSRDelegateController.h"
 #import "ZCCSRIOConsumer.h"
@@ -85,7 +85,7 @@ NSString *const ZCCSRHTTPResponseErrorKey = @"HTTPResponseStatusCode";
 
 @implementation ZCCSRWebSocket {
     ZCCSRMutex _kvoLock;
-    OSSpinLock _propertyLock;
+    os_unfair_lock _propertyLock;
 
     dispatch_queue_t _workQueue;
     NSMutableArray<ZCCSRIOConsumer *> *_consumers;
@@ -160,7 +160,7 @@ NSString *const ZCCSRHTTPResponseErrorKey = @"HTTPResponseStatusCode";
 
     _readyState = SR_CONNECTING;
 
-    _propertyLock = OS_SPINLOCK_INIT;
+    _propertyLock = OS_UNFAIR_LOCK_INIT;
     _kvoLock = ZCCSRMutexInitRecursive();
     _workQueue = dispatch_queue_create(NULL, DISPATCH_QUEUE_SERIAL);
 
@@ -282,9 +282,9 @@ NSString *const ZCCSRHTTPResponseErrorKey = @"HTTPResponseStatusCode";
         ZCCSRMutexLock(_kvoLock);
         if (_readyState != readyState) {
             [self willChangeValueForKey:@"readyState"];
-            OSSpinLockLock(&_propertyLock);
+            os_unfair_lock_lock(&_propertyLock);
             _readyState = readyState;
-            OSSpinLockUnlock(&_propertyLock);
+            os_unfair_lock_unlock(&_propertyLock);
             [self didChangeValueForKey:@"readyState"];
         }
     }
@@ -296,9 +296,9 @@ NSString *const ZCCSRHTTPResponseErrorKey = @"HTTPResponseStatusCode";
 - (ZCCSRReadyState)readyState
 {
     ZCCSRReadyState state = 0;
-    OSSpinLockLock(&_propertyLock);
+    os_unfair_lock_lock(&_propertyLock);
     state = _readyState;
-    OSSpinLockUnlock(&_propertyLock);
+    os_unfair_lock_unlock(&_propertyLock);
     return state;
 }
 
@@ -362,7 +362,7 @@ NSString *const ZCCSRHTTPResponseErrorKey = @"HTTPResponseStatusCode";
     // Schedule to run on a work queue, to make sure we don't run this inline and deallocate `self` inside `ZCCSRProxyConnect`.
     // TODO: (nlutsenko) Find a better structure for this, maybe Bolts Tasks?
     dispatch_async(_workQueue, ^{
-        _proxyConnect = nil;
+        self->_proxyConnect = nil;
     });
 }
 
@@ -431,10 +431,10 @@ NSString *const ZCCSRHTTPResponseErrorKey = @"HTTPResponseStatusCode";
     }
 
     [self _readUntilHeaderCompleteWithCallback:^(ZCCSRWebSocket *socket,  NSData *data) {
-        CFHTTPMessageAppendBytes(_receivedHTTPHeaders, (const UInt8 *)data.bytes, data.length);
+        CFHTTPMessageAppendBytes(self->_receivedHTTPHeaders, (const UInt8 *)data.bytes, (CFIndex)data.length);
 
-        if (CFHTTPMessageIsHeaderComplete(_receivedHTTPHeaders)) {
-            ZCCSRDebugLog(@"Finished reading headers %@", CFBridgingRelease(CFHTTPMessageCopyAllHeaderFields(_receivedHTTPHeaders)));
+        if (CFHTTPMessageIsHeaderComplete(self->_receivedHTTPHeaders)) {
+            ZCCSRDebugLog(@"Finished reading headers %@", CFBridgingRelease(CFHTTPMessageCopyAllHeaderFields(self->_receivedHTTPHeaders)));
             [self _HTTPHeadersDidFinish];
         } else {
             [self _readHTTPHeader];
@@ -550,7 +550,7 @@ NSString *const ZCCSRHTTPResponseErrorKey = @"HTTPResponseStatusCode";
     // Need to shunt this on the _callbackQueue first to see if they received any messages
     [self.delegateController performDelegateQueueBlock:^{
         [self closeWithCode:ZCCSRStatusCodeProtocolError reason:message];
-        dispatch_async(_workQueue, ^{
+        dispatch_async(self->_workQueue, ^{
             [self closeConnection];
         });
     }];
@@ -560,7 +560,7 @@ NSString *const ZCCSRHTTPResponseErrorKey = @"HTTPResponseStatusCode";
 {
     dispatch_async(_workQueue, ^{
         if (self.readyState != SR_CLOSED) {
-            _failed = YES;
+            self->_failed = YES;
             [self.delegateController performDelegateBlock:^(id<ZCCSRWebSocketDelegate>  _Nullable delegate, ZCCSRDelegateAvailableMethods availableMethods) {
                 if (availableMethods.didFailWithError) {
                     [delegate webSocket:self didFailWithError:error];
@@ -676,7 +676,7 @@ NSString *const ZCCSRHTTPResponseErrorKey = @"HTTPResponseStatusCode";
         if (availableMethods.didReceivePing) {
             [delegate webSocket:self didReceivePingWithData:data];
         }
-        dispatch_async(_workQueue, ^{
+        dispatch_async(self->_workQueue, ^{
             [self _sendFrameWithOpcode:ZCCSROpCodePong data:data];
         });
     }];
@@ -977,7 +977,7 @@ static const uint8_t SRPayloadLenMask   = 0x7F;
             return;
         }
 
-        size_t extra_bytes_needed = header.masked ? sizeof(_currentReadMaskKey) : 0;
+        size_t extra_bytes_needed = header.masked ? sizeof(self->_currentReadMaskKey) : 0;
 
         if (header.payload_length == 126) {
             extra_bytes_needed += sizeof(uint16_t);
@@ -1015,7 +1015,7 @@ static const uint8_t SRPayloadLenMask   = 0x7F;
                 }
 
                 if (header.masked) {
-                    assert(mapped_size >= sizeof(_currentReadMaskOffset) + offset);
+                    assert(mapped_size >= sizeof(self->_currentReadMaskOffset) + offset);
                     memcpy(eself->_currentReadMaskKey, ((uint8_t *)mapped_buffer) + offset, sizeof(eself->_currentReadMaskKey));
                 }
 
@@ -1030,12 +1030,12 @@ static const uint8_t SRPayloadLenMask   = 0x7F;
     dispatch_async(_workQueue, ^{
         // Don't reset the length, since Apple doesn't guarantee that this will free the memory (and in tests on
         // some platforms, it doesn't seem to, effectively causing a leak the size of the biggest frame so far).
-        _currentFrameData = [[NSMutableData alloc] init];
+        self->_currentFrameData = [[NSMutableData alloc] init];
 
-        _currentFrameOpcode = 0;
-        _currentFrameCount = 0;
-        _readOpCount = 0;
-        _currentStringScanPosition = 0;
+        self->_currentFrameOpcode = 0;
+        self->_currentFrameCount = 0;
+        self->_readOpCount = 0;
+        self->_currentStringScanPosition = 0;
 
         [self _readFrameContinue];
     });
@@ -1069,7 +1069,7 @@ static const uint8_t SRPayloadLenMask   = 0x7F;
             return;
         }
 
-        _outputBufferOffset += bytesWritten;
+        _outputBufferOffset += (NSUInteger)bytesWritten;
 
         if (_outputBufferOffset > ZCCSRDefaultBufferSize() && _outputBufferOffset > dataLength / 2) {
             _outputBuffer = dispatch_data_create_subrange(_outputBuffer, _outputBufferOffset, dataLength - _outputBufferOffset);
@@ -1097,7 +1097,7 @@ static const uint8_t SRPayloadLenMask   = 0x7F;
         if (!_failed) {
             [self.delegateController performDelegateBlock:^(id<ZCCSRWebSocketDelegate>  _Nullable delegate, ZCCSRDelegateAvailableMethods availableMethods) {
                 if (availableMethods.didCloseWithCode) {
-                    [delegate webSocket:self didCloseWithCode:_closeCode reason:_closeReason wasClean:YES];
+                    [delegate webSocket:self didCloseWithCode:self->_closeCode reason:self->_closeReason wasClean:YES];
                 }
             }];
         }
@@ -1159,7 +1159,7 @@ static const uint8_t SRPayloadLenMask   = 0x7F;
 
     // Cleanup selfRetain in the same GCD queue as usual
     dispatch_async(_workQueue, ^{
-        _selfRetain = nil;
+        self->_selfRetain = nil;
     });
 }
 
@@ -1286,7 +1286,7 @@ static const char CRLFCRLFBytes[] = {'\r', '\n', '\r', '\n'};
                         });
                         return didWork;
                     } else {
-                        _currentStringScanPosition += valid_utf8_size;
+                        _currentStringScanPosition += (unsigned int)valid_utf8_size;
                     }
                 }
 
@@ -1349,7 +1349,7 @@ static const size_t SRFrameHeaderOverhead = 32;
     uint8_t *frameBuffer = (uint8_t *)frameData.mutableBytes;
 
     // set fin
-    frameBuffer[0] = SRFinMask | opCode;
+    frameBuffer[0] = SRFinMask | (uint8_t)opCode;
 
     // set the mask and header
     frameBuffer[1] |= SRMaskMask;
@@ -1471,8 +1471,8 @@ static const size_t SRFrameHeaderOverhead = 32;
                         [self _scheduleCleanup];
                     }
 
-                    if (!_sentClose && !_failed) {
-                        _sentClose = YES;
+                    if (!self->_sentClose && !self->_failed) {
+                        self->_sentClose = YES;
                         // If we get closed in this state it's probably not clean because we should be sending this when we send messages
                         [self.delegateController performDelegateBlock:^(id<ZCCSRWebSocketDelegate>  _Nullable delegate, ZCCSRDelegateAvailableMethods availableMethods) {
                             if (availableMethods.didCloseWithCode) {
@@ -1496,7 +1496,7 @@ static const size_t SRFrameHeaderOverhead = 32;
             while (_inputStream.hasBytesAvailable) {
                 NSInteger bytesRead = [_inputStream read:buffer maxLength:ZCCSRDefaultBufferSize()];
                 if (bytesRead > 0) {
-                    dispatch_data_t data = dispatch_data_create(buffer, bytesRead, nil, DISPATCH_DATA_DESTRUCTOR_DEFAULT);
+                    dispatch_data_t data = dispatch_data_create(buffer, (size_t)bytesRead, nil, DISPATCH_DATA_DESTRUCTOR_DEFAULT);
                     if (!data) {
                         NSError *error = ZCCSRErrorWithCodeDescription(ZCCSRStatusCodeMessageTooBig,
                                                                     @"Unable to allocate memory to read from socket.");
@@ -1602,7 +1602,7 @@ static inline int32_t validate_dispatch_data_partial_string(NSData *data) {
         }
     }
 
-    if (size != -1 && ![[NSString alloc] initWithBytesNoCopy:(char *)[data bytes] length:size encoding:NSUTF8StringEncoding freeWhenDone:NO]) {
+    if (size != -1 && ![[NSString alloc] initWithBytesNoCopy:(char *)[data bytes] length:(NSUInteger)size encoding:NSUTF8StringEncoding freeWhenDone:NO]) {
         size = -1;
     }
 

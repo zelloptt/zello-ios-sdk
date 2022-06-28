@@ -338,7 +338,7 @@
   [session socket:self.socket didReportStatus:ZCCChannelInfoZero() forChannel:@"test" usersOnline:1];
 
   XCTAssertEqual([XCTWaiter waitForExpectations:@[calledDelegate] timeout:3.0], XCTWaiterResultCompleted);
-  OCMVerify(self.sessionDelegate);
+  OCMVerifyAll(self.sessionDelegate);
 }
 
 // Verify that channel status properties have meaningful values when the session is disconnected

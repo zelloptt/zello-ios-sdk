@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setDelegate:(id<ZCCSRWebSocketDelegate> _Nullable)delegate
 {
     dispatch_barrier_async(self.accessQueue, ^{
-        _delegate = delegate;
+        self->_delegate = delegate;
 
         self.availableDelegateMethods = (ZCCSRDelegateAvailableMethods){
             .didReceiveMessage = [delegate respondsToSelector:@selector(webSocket:didReceiveMessage:)],
@@ -75,8 +75,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setDispatchQueue:(dispatch_queue_t _Nullable)queue
 {
     dispatch_barrier_async(self.accessQueue, ^{
-        _dispatchQueue = queue ?: dispatch_get_main_queue();
-        _operationQueue = nil;
+        self->_dispatchQueue = queue ?: dispatch_get_main_queue();
+        self->_operationQueue = nil;
     });
 }
 
@@ -92,8 +92,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setOperationQueue:(NSOperationQueue *_Nullable)queue
 {
     dispatch_barrier_async(self.accessQueue, ^{
-        _dispatchQueue = queue ? nil : dispatch_get_main_queue();
-        _operationQueue = queue;
+        self->_dispatchQueue = queue ? nil : dispatch_get_main_queue();
+        self->_operationQueue = queue;
     });
 }
 
@@ -101,7 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
 {
     __block NSOperationQueue *queue = nil;
     dispatch_sync(self.accessQueue, ^{
-        queue = _operationQueue;
+        queue = self->_operationQueue;
     });
     return queue;
 }

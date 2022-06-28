@@ -13,7 +13,7 @@ size_t ZCCSRDefaultBufferSize(void) {
     static size_t size;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        size = getpagesize();
+        size = (size_t)getpagesize();
     });
     return size;
 }
