@@ -1,0 +1,20 @@
+PODS:
+  - OCMock (3.9.1)
+  - zello-opus-ios (1.0.1)
+
+DEPENDENCIES:
+  - OCMock (= 3.9.1)
+  - zello-opus-ios (~> 1.0.1)
+
+SPEC REPOS:
+  trunk:
+    - OCMock
+    - zello-opus-ios
+
+SPEC CHECKSUMS:
+  OCMock: 9491e4bec59e0b267d52a9184ff5605995e74be8
+  zello-opus-ios: 8c1f08799d7a147c86f21ec2a18f7b19f8c2ceed
+
+PODFILE CHECKSUM: a8606ef0395a2635b1d0cbbf62f8931dfabb09de
+
+COCOAPODS: 1.11.3

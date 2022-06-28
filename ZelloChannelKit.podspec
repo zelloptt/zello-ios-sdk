@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "ZelloChannelKit"
-  spec.version      = "0.5.5"
+  spec.version      = "0.5.6"
   spec.summary      = "WebSocket based API to connect to Zello channels"
   spec.description  = <<-DESC
 The Zello Channels SDK allows you to integrate Zello push-to-talk into your own application. The SDK communicates with a Zello server over a web socket connection using a JSON-based protocol, and offers a simple API to send and receive audio, images, and text over Zello channels. Supported features include:
@@ -20,7 +20,7 @@ The protocol specification is also available if you prefer to develop your own c
   spec.homepage     = "https://github.com/zelloptt/zello-channel-api/"
   spec.license      = "MIT"
   spec.author       = { "Zello, Inc." => "dev@zello.com" }
-  spec.platform     = :ios, "9.3"
+  spec.platform     = :ios, "12.1"
 
   spec.source       = { :git => "https://github.com/zelloptt/zello-ios-sdk.git", :tag => "v#{spec.version}" }
 
@@ -45,19 +45,17 @@ The protocol specification is also available if you prefer to develop your own c
     opus.source_files = "LibOpus/CSource/**/*.{h,cpp}"
     opus.private_header_files = "LibOpus/CSource/**/*.h"
     opus.preserve_paths = "LibOpus/CSource/include/opus/*.h"
-    opus.compiler_flags = "-Wno-implicit-retain-self"
     opus.library = "c++"
     opus.xcconfig = {
       'CLANG_CXX_LANGUAGE_STANDARD' => 'c++11',
       'CLANG_CXX_LIBRARY' => 'libc++'
     }
-    opus.vendored_library = "ZelloChannelKit/ZelloChannelKit/libopus.a"
+    spec.dependency 'zello-opus-ios', '~> 1.0.1'
   end
 
   spec.subspec 'SocketRocket' do |sr|
     sr.source_files = "ZelloChannelKit/ZelloChannelKit/network/SocketRocket/**/*.{h,m}"
     sr.private_header_files = "ZelloChannelKit/ZelloChannelKit/network/SocketRocket/**/*.h"
-    sr.compiler_flags = "-Wno-implicit-retain-self", "-Wno-switch"
   end
   
   spec.libraries = "icucore", "c++"

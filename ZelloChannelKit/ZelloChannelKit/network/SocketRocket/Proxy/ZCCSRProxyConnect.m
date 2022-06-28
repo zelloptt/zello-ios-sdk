@@ -188,15 +188,15 @@
         [proxyType isEqualToString:(NSString *)kCFProxyTypeHTTPS]) {
         _httpProxyHost = settings[(NSString *)kCFProxyHostNameKey];
         NSNumber *portValue = settings[(NSString *)kCFProxyPortNumberKey];
-        if (portValue) {
-            _httpProxyPort = [portValue intValue];
+        if (portValue != nil) {
+            _httpProxyPort = [portValue unsignedIntValue];
         }
     }
     if ([proxyType isEqualToString:(NSString *)kCFProxyTypeSOCKS]) {
         _socksProxyHost = settings[(NSString *)kCFProxyHostNameKey];
         NSNumber *portValue = settings[(NSString *)kCFProxyPortNumberKey];
-        if (portValue)
-            _socksProxyPort = [portValue intValue];
+        if (portValue != nil)
+            _socksProxyPort = [portValue unsignedIntValue];
         _socksProxyUsername = settings[(NSString *)kCFProxyUsernameKey];
         _socksProxyPassword = settings[(NSString *)kCFProxyPasswordKey];
     }
@@ -394,7 +394,7 @@
     }
 
     BOOL process = (_inputQueue.count == 0);
-    [_inputQueue addObject:[NSData dataWithBytes:buffer length:length]];
+    [_inputQueue addObject:[NSData dataWithBytes:buffer length:(NSUInteger)length]];
 
     if (process) {
         [self _dequeueInput];
@@ -422,7 +422,7 @@
         _receivedHTTPHeaders = CFHTTPMessageCreateEmpty(NULL, NO);
     }
 
-    CFHTTPMessageAppendBytes(_receivedHTTPHeaders, (const UInt8 *)data.bytes, data.length);
+    CFHTTPMessageAppendBytes(_receivedHTTPHeaders, (const UInt8 *)data.bytes, (CFIndex)data.length);
     if (CFHTTPMessageIsHeaderComplete(_receivedHTTPHeaders)) {
         ZCCSRDebugLog(@"Finished reading headers %@", CFBridgingRelease(CFHTTPMessageCopyAllHeaderFields(_receivedHTTPHeaders)));
         [self _proxyHTTPHeadersDidFinish];

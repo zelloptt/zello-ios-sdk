@@ -45,7 +45,6 @@
 		53AA9E531FD9C35F00C35403 /* libzopus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53AA9E541FD9C35F00C35403 /* libzopus.a */; };
 		53AA9E561FD9CC2A00C35403 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53AA9E551FD9CC2A00C35403 /* AudioToolbox.framework */; };
 		53AA9E581FD9CC3200C35403 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53AA9E571FD9CC3200C35403 /* AVFoundation.framework */; };
-		53AA9E851FD9CC9500C35403 /* libopus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53AA9E741FD9CC8800C35403 /* libopus.a */; };
 		53AA9E8D1FDA309A00C35403 /* ZCCWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AA9E8B1FDA309A00C35403 /* ZCCWeakTimer.m */; };
 		53AA9E9C1FDA5F1E00C35403 /* ZCCVoiceStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 53AA9E9A1FDA5F1E00C35403 /* ZCCVoiceStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53AA9E9D1FDA5F1E00C35403 /* ZCCVoiceStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AA9E9B1FDA5F1E00C35403 /* ZCCVoiceStream.m */; };
@@ -53,6 +52,7 @@
 		53AA9EA11FDA60A300C35403 /* ZCCIncomingVoiceStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AA9E9F1FDA60A300C35403 /* ZCCIncomingVoiceStream.m */; };
 		53AA9EA41FDA60BD00C35403 /* ZCCOutgoingVoiceStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 53AA9EA21FDA60BD00C35403 /* ZCCOutgoingVoiceStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53AA9EA51FDA60BD00C35403 /* ZCCOutgoingVoiceStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AA9EA31FDA60BD00C35403 /* ZCCOutgoingVoiceStream.m */; };
+		6A458CB4AC6B417D71F5711D /* Pods_ZelloChannelKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71420113AAA55F5B5B01BB2D /* Pods_ZelloChannelKit.framework */; };
 		A8043FB51FD5BE9000BFD1BF /* ZelloChannelKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8043FAB1FD5BE9000BFD1BF /* ZelloChannelKit.framework */; };
 		A8043FBC1FD5BE9000BFD1BF /* ZelloChannelKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A8043FAE1FD5BE9000BFD1BF /* ZelloChannelKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A85831FC1FD62878000ECA30 /* ZCCSession.h in Headers */ = {isa = PBXBuildFile; fileRef = A85831FA1FD62878000ECA30 /* ZCCSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -80,8 +80,8 @@
 		D13D1FE52074264F004D7EAD /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D13D1FE42074264F004D7EAD /* libicucore.tbd */; };
 		D1444841203CC0620091A061 /* ZCCStreamState.h in Headers */ = {isa = PBXBuildFile; fileRef = 53AA9EAF1FDB69B700C35403 /* ZCCStreamState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D16A41F32075689A009783DF /* NSURLRequest+ZCCSRWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41C42075689A009783DF /* NSURLRequest+ZCCSRWebSocket.h */; };
-		D16A41F42075689A009783DF /* ZCCSRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41C52075689A009783DF /* ZCCSRWebSocket.m */; settings = {COMPILER_FLAGS = "-Wno-implicit-retain-self -Wno-sign-conversion -Wno-implicit-int-conversion"; }; };
-		D16A41F52075689A009783DF /* ZCCSRProxyConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41C72075689A009783DF /* ZCCSRProxyConnect.m */; settings = {COMPILER_FLAGS = "-Wno-sign-conversion"; }; };
+		D16A41F42075689A009783DF /* ZCCSRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41C52075689A009783DF /* ZCCSRWebSocket.m */; };
+		D16A41F52075689A009783DF /* ZCCSRProxyConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41C72075689A009783DF /* ZCCSRProxyConnect.m */; };
 		D16A41F62075689A009783DF /* ZCCSRProxyConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41C82075689A009783DF /* ZCCSRProxyConnect.h */; };
 		D16A41F72075689A009783DF /* ZCCSRRunLoopThread.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41CA2075689A009783DF /* ZCCSRRunLoopThread.h */; };
 		D16A41F82075689A009783DF /* ZCCSRRunLoopThread.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41CB2075689A009783DF /* ZCCSRRunLoopThread.m */; };
@@ -89,7 +89,7 @@
 		D16A41FB2075689A009783DF /* ZCCSRPinningSecurityPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41CF2075689A009783DF /* ZCCSRPinningSecurityPolicy.h */; };
 		D16A41FC2075689A009783DF /* NSRunLoop+ZCCSRWebSocketPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41D02075689A009783DF /* NSRunLoop+ZCCSRWebSocketPrivate.h */; };
 		D16A41FD2075689A009783DF /* ZCCSRDelegateController.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41D22075689A009783DF /* ZCCSRDelegateController.h */; };
-		D16A41FE2075689A009783DF /* ZCCSRDelegateController.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41D32075689A009783DF /* ZCCSRDelegateController.m */; settings = {COMPILER_FLAGS = "-Wno-implicit-retain-self"; }; };
+		D16A41FE2075689A009783DF /* ZCCSRDelegateController.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41D32075689A009783DF /* ZCCSRDelegateController.m */; };
 		D16A41FF2075689A009783DF /* ZCCSRSecurityPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41D42075689A009783DF /* ZCCSRSecurityPolicy.h */; };
 		D16A42002075689A009783DF /* NSRunLoop+ZCCSRWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41D52075689A009783DF /* NSRunLoop+ZCCSRWebSocket.h */; };
 		D16A42012075689A009783DF /* ZCCSRHash.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41D72075689A009783DF /* ZCCSRHash.m */; };
@@ -100,9 +100,9 @@
 		D16A42062075689A009783DF /* ZCCSRError.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41DC2075689A009783DF /* ZCCSRError.h */; };
 		D16A42072075689A009783DF /* ZCCSRHTTPConnectMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41DD2075689A009783DF /* ZCCSRHTTPConnectMessage.h */; };
 		D16A42082075689A009783DF /* ZCCSRRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41DE2075689A009783DF /* ZCCSRRandom.m */; };
-		D16A42092075689A009783DF /* ZCCSRURLUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41DF2075689A009783DF /* ZCCSRURLUtilities.m */; settings = {COMPILER_FLAGS = "-Wno-switch"; }; };
+		D16A42092075689A009783DF /* ZCCSRURLUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41DF2075689A009783DF /* ZCCSRURLUtilities.m */; };
 		D16A420A2075689A009783DF /* ZCCSRLog.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41E02075689A009783DF /* ZCCSRLog.m */; };
-		D16A420B2075689A009783DF /* ZCCSRConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41E12075689A009783DF /* ZCCSRConstants.m */; settings = {COMPILER_FLAGS = "-Wno-sign-conversion"; }; };
+		D16A420B2075689A009783DF /* ZCCSRConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41E12075689A009783DF /* ZCCSRConstants.m */; };
 		D16A420C2075689A009783DF /* ZCCSRHash.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41E22075689A009783DF /* ZCCSRHash.h */; };
 		D16A420D2075689A009783DF /* ZCCSRMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = D16A41E32075689A009783DF /* ZCCSRMutex.h */; };
 		D16A420E2075689A009783DF /* ZCCSRSIMDHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = D16A41E42075689A009783DF /* ZCCSRSIMDHelpers.m */; };
@@ -137,7 +137,6 @@
 		D1C8ABB8206445AC009A39CF /* ZCCSessionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D1C8ABB7206445AC009A39CF /* ZCCSessionTests.m */; };
 		D1C8ABBB2064488E009A39CF /* ZCCSocketFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = D1C8ABB92064488E009A39CF /* ZCCSocketFactory.h */; };
 		D1C8ABBC2064488E009A39CF /* ZCCSocketFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D1C8ABBA2064488E009A39CF /* ZCCSocketFactory.m */; };
-		D1C8ABBE20644AC7009A39CF /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C8ABBD20644AC7009A39CF /* libOCMock.a */; };
 		D1D10EF62057267300DE129A /* ZCCAudioUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = D1D10EF42057267300DE129A /* ZCCAudioUtils.h */; };
 		D1D10EF72057267300DE129A /* ZCCAudioUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D1D10EF52057267300DE129A /* ZCCAudioUtils.m */; };
 		D1D241782332CD6500675667 /* ZCCChannelInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = D1D241762332CD6500675667 /* ZCCChannelInfo.h */; };
@@ -163,6 +162,7 @@
 		D1F1CFCA232C150B000734E7 /* ZCCAddressFormattingService.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F1CFC8232C150B000734E7 /* ZCCAddressFormattingService.m */; };
 		D1F6F547204891530045A100 /* ZCCCustomAudioSource.h in Headers */ = {isa = PBXBuildFile; fileRef = D1F6F545204891530045A100 /* ZCCCustomAudioSource.h */; };
 		D1F6F548204891530045A100 /* ZCCCustomAudioSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F6F546204891530045A100 /* ZCCCustomAudioSource.m */; };
+		D3F86B201592B4BA83631ADD /* Pods_ZelloChannelKit_ZelloChannelKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53B3BF216BC3FB551AA2481 /* Pods_ZelloChannelKit_ZelloChannelKitTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +176,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		514FECAB5713A4EE9195E43A /* Pods-ZelloChannelKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZelloChannelKit.debug.xcconfig"; path = "Target Support Files/Pods-ZelloChannelKit/Pods-ZelloChannelKit.debug.xcconfig"; sourceTree = "<group>"; };
 		53AA9E171FD9BC5100C35403 /* ZCCPlayer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ZCCPlayer.mm; sourceTree = "<group>"; };
 		53AA9E191FD9BC5100C35403 /* ZCCCodec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCCCodec.h; sourceTree = "<group>"; };
 		53AA9E1A1FD9BC5100C35403 /* ZCCCodecFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCCCodecFactory.h; sourceTree = "<group>"; };
@@ -245,6 +246,11 @@
 		53AA9EA31FDA60BD00C35403 /* ZCCOutgoingVoiceStream.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCCOutgoingVoiceStream.m; sourceTree = "<group>"; };
 		53AA9EA61FDA681B00C35403 /* ZCCProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCCProtocol.h; sourceTree = "<group>"; };
 		53AA9EAF1FDB69B700C35403 /* ZCCStreamState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCCStreamState.h; sourceTree = "<group>"; };
+		544A515BF2AAF1E4550E2B78 /* Pods-ZelloChannelKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZelloChannelKit.release.xcconfig"; path = "Target Support Files/Pods-ZelloChannelKit/Pods-ZelloChannelKit.release.xcconfig"; sourceTree = "<group>"; };
+		6139DCAF4D53DD6B36220731 /* Pods-ZelloChannelKit-ZelloChannelKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZelloChannelKit-ZelloChannelKitTests.debug.xcconfig"; path = "Target Support Files/Pods-ZelloChannelKit-ZelloChannelKitTests/Pods-ZelloChannelKit-ZelloChannelKitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		71420113AAA55F5B5B01BB2D /* Pods_ZelloChannelKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZelloChannelKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7341CE6725AAE8D338276993 /* Pods-ZelloChannelKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZelloChannelKitTests.debug.xcconfig"; path = "Target Support Files/Pods-ZelloChannelKitTests/Pods-ZelloChannelKitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8E0E1213BFDC92B2B245E90B /* Pods-ZelloChannelKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZelloChannelKitTests.release.xcconfig"; path = "Target Support Files/Pods-ZelloChannelKitTests/Pods-ZelloChannelKitTests.release.xcconfig"; sourceTree = "<group>"; };
 		A8043FAB1FD5BE9000BFD1BF /* ZelloChannelKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZelloChannelKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8043FAE1FD5BE9000BFD1BF /* ZelloChannelKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZelloChannelKit.h; sourceTree = "<group>"; };
 		A8043FAF1FD5BE9000BFD1BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -253,6 +259,7 @@
 		A85831F91FD6283D000ECA30 /* SocketIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SocketIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A85831FA1FD62878000ECA30 /* ZCCSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCCSession.h; sourceTree = "<group>"; };
 		A85831FB1FD62878000ECA30 /* ZCCSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCCSession.m; sourceTree = "<group>"; };
+		AA94721D149D084CE6F219C0 /* Pods-ZelloChannelKit-ZelloChannelKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZelloChannelKit-ZelloChannelKitTests.release.xcconfig"; path = "Target Support Files/Pods-ZelloChannelKit-ZelloChannelKitTests/Pods-ZelloChannelKit-ZelloChannelKitTests.release.xcconfig"; sourceTree = "<group>"; };
 		D10433D9232835C600FD9153 /* ZCCImageMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCCImageMessage.m; sourceTree = "<group>"; };
 		D10433DA232835C600FD9153 /* ZCCImageHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCCImageHeader.m; sourceTree = "<group>"; };
 		D10433DB232835C600FD9153 /* ZCCImageHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCCImageHeader.h; sourceTree = "<group>"; };
@@ -371,6 +378,7 @@
 		D1F6F545204891530045A100 /* ZCCCustomAudioSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCCCustomAudioSource.h; sourceTree = "<group>"; };
 		D1F6F546204891530045A100 /* ZCCCustomAudioSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCCCustomAudioSource.m; sourceTree = "<group>"; };
 		D1F6F549204891870045A100 /* ZCCAudioSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCCAudioSource.h; sourceTree = "<group>"; };
+		E53B3BF216BC3FB551AA2481 /* Pods_ZelloChannelKit_ZelloChannelKitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZelloChannelKit_ZelloChannelKitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,10 +387,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D13D1FE52074264F004D7EAD /* libicucore.tbd in Frameworks */,
-				53AA9E851FD9CC9500C35403 /* libopus.a in Frameworks */,
 				53AA9E581FD9CC3200C35403 /* AVFoundation.framework in Frameworks */,
 				53AA9E561FD9CC2A00C35403 /* AudioToolbox.framework in Frameworks */,
 				53AA9E531FD9C35F00C35403 /* libzopus.a in Frameworks */,
+				6A458CB4AC6B417D71F5711D /* Pods_ZelloChannelKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,8 +398,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1C8ABBE20644AC7009A39CF /* libOCMock.a in Frameworks */,
 				A8043FB51FD5BE9000BFD1BF /* ZelloChannelKit.framework in Frameworks */,
+				D3F86B201592B4BA83631ADD /* Pods_ZelloChannelKit_ZelloChannelKitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +549,8 @@
 		};
 		53AA9E801FD9CC8800C35403 /* Products */ = {
 			isa = PBXGroup;
+			children = (
+			);
 			name = Products;
 			sourceTree = "<group>";
 		};
@@ -587,6 +597,7 @@
 				A8043FB81FD5BE9000BFD1BF /* ZelloChannelKitTests */,
 				A8043FAC1FD5BE9000BFD1BF /* Products */,
 				A80440961FD5CFCB00BFD1BF /* Frameworks */,
+				A820F44E8AEDE7C43D55B550 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -651,8 +662,24 @@
 				53AA9E551FD9CC2A00C35403 /* AudioToolbox.framework */,
 				53AA9E541FD9C35F00C35403 /* libzopus.a */,
 				A85831F91FD6283D000ECA30 /* SocketIO.framework */,
+				71420113AAA55F5B5B01BB2D /* Pods_ZelloChannelKit.framework */,
+				E53B3BF216BC3FB551AA2481 /* Pods_ZelloChannelKit_ZelloChannelKitTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A820F44E8AEDE7C43D55B550 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				514FECAB5713A4EE9195E43A /* Pods-ZelloChannelKit.debug.xcconfig */,
+				544A515BF2AAF1E4550E2B78 /* Pods-ZelloChannelKit.release.xcconfig */,
+				6139DCAF4D53DD6B36220731 /* Pods-ZelloChannelKit-ZelloChannelKitTests.debug.xcconfig */,
+				AA94721D149D084CE6F219C0 /* Pods-ZelloChannelKit-ZelloChannelKitTests.release.xcconfig */,
+				7341CE6725AAE8D338276993 /* Pods-ZelloChannelKitTests.debug.xcconfig */,
+				8E0E1213BFDC92B2B245E90B /* Pods-ZelloChannelKitTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
 			sourceTree = "<group>";
 		};
 		D10433D823281D4500FD9153 /* images */ = {
@@ -928,6 +955,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8043FBF1FD5BE9000BFD1BF /* Build configuration list for PBXNativeTarget "ZelloChannelKit" */;
 			buildPhases = (
+				A93DDC9232BC108CB4B13797 /* [CP] Check Pods Manifest.lock */,
 				A8043FA61FD5BE9000BFD1BF /* Sources */,
 				A8043FA71FD5BE9000BFD1BF /* Frameworks */,
 				A8043FA81FD5BE9000BFD1BF /* Headers */,
@@ -946,9 +974,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8043FC21FD5BE9000BFD1BF /* Build configuration list for PBXNativeTarget "ZelloChannelKitTests" */;
 			buildPhases = (
+				0BB772AC12111D5E1A402D77 /* [CP] Check Pods Manifest.lock */,
 				A8043FB01FD5BE9000BFD1BF /* Sources */,
 				A8043FB11FD5BE9000BFD1BF /* Frameworks */,
 				A8043FB21FD5BE9000BFD1BF /* Resources */,
+				D98E79D5C25697205A291418 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -967,7 +997,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ZCC;
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1340;
 				ORGANIZATIONNAME = Zello;
 				TargetAttributes = {
 					A8043FAA1FD5BE9000BFD1BF = {
@@ -1029,6 +1059,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0BB772AC12111D5E1A402D77 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZelloChannelKit-ZelloChannelKitTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A93DDC9232BC108CB4B13797 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZelloChannelKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D1A3BB642073DAB40038FDDA /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1041,6 +1115,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/sh\n\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}/iOS\"\n\n# Step 1. Build Device and Simulator versions on iOS\nWORKSPACE_NAME=\"ZelloChannelKit.xcworkspace\"\nxcodebuild -workspace \"../${WORKSPACE_NAME}\" -scheme \"${PROJECT_NAME}\" -configuration Release -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6' clean build\nxcodebuild -workspace \"../${WORKSPACE_NAME}\" -scheme \"${PROJECT_NAME}\" -configuration Release -sdk iphoneos clean build\n\n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/iOS\"\n\n# Step 3. Create universal binary file using lipo and place the combined executable in the copied framework directory\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/iOS/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n\n# Step 4. Convenience step to copy the framework to the project's directory\nmkdir -p \"${TMPDIR}/${PROJECT_NAME}/Frameworks/iOS\"\n\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/iOS/${PROJECT_NAME}.framework\" \"${TMPDIR}/${PROJECT_NAME}/Frameworks/iOS\"\n\n\n# Step 6. Create .tar.gz file for posting on the binary repository\ncd \"${TMPDIR}\"\n\n# We nest the framework inside a Frameworks folder so that it unarchives correctly\ntar -zcf \"${PROJECT_NAME}.framework.tar.gz\" \"${PROJECT_NAME}/Frameworks/\"\nmv \"${PROJECT_NAME}.framework.tar.gz\" \"${PROJECT_DIR}/\"\n\n# Step 7. Convenience step to open the project's directory in Finder\n#open \"${PROJECT_DIR}\"";
+		};
+		D98E79D5C25697205A291418 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZelloChannelKit-ZelloChannelKitTests/Pods-ZelloChannelKit-ZelloChannelKitTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/OCMock/OCMock.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/zello-opus-ios/opus.framework/opus",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMock.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/opus.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZelloChannelKit-ZelloChannelKitTests/Pods-ZelloChannelKit-ZelloChannelKitTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1168,6 +1262,7 @@
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
@@ -1179,6 +1274,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 0.5.3;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1200,7 +1296,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1241,6 +1337,7 @@
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
@@ -1252,6 +1349,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 0.5.3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1267,7 +1365,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/../LibOpus\"";
@@ -1279,22 +1377,25 @@
 		};
 		A8043FC01FD5BE9000BFD1BF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 514FECAB5713A4EE9195E43A /* Pods-ZelloChannelKit.debug.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0.5.6;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = ZelloChannelKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ZelloChannelKit",
 				);
+				MARKETING_VERSION = 0.5.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zello.zellochannelkit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1305,22 +1406,25 @@
 		};
 		A8043FC11FD5BE9000BFD1BF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 544A515BF2AAF1E4550E2B78 /* Pods-ZelloChannelKit.release.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0.5.6;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = ZelloChannelKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ZelloChannelKit",
 				);
+				MARKETING_VERSION = 0.5.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zello.zellochannelkit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1331,13 +1435,12 @@
 		};
 		A8043FC31FD5BE9000BFD1BF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6139DCAF4D53DD6B36220731 /* Pods-ZelloChannelKit-ZelloChannelKitTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U5TBRZ56DZ;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../OCMock-3.4.1";
 				INFOPLIST_FILE = ZelloChannelKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../OCMock-3.4.1";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1351,13 +1454,12 @@
 		};
 		A8043FC41FD5BE9000BFD1BF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA94721D149D084CE6F219C0 /* Pods-ZelloChannelKit-ZelloChannelKitTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U5TBRZ56DZ;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../OCMock-3.4.1";
 				INFOPLIST_FILE = ZelloChannelKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../OCMock-3.4.1";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

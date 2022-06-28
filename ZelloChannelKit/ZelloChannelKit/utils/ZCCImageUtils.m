@@ -51,8 +51,8 @@
 + (nullable NSData *)JPEGRepresentationForImage:(UIImage *)image maxSize:(NSUInteger)maxSize {
   NSData *imageData = nil;
 
-  for (float quality = 0.95f; quality > 0; quality -= 0.1f) {
-    imageData = UIImageJPEGRepresentation(image, quality);
+  for (NSInteger quality = 95; quality > 0; quality -= 10) {
+    imageData = UIImageJPEGRepresentation(image, (float)quality / 100.0f);
     if (imageData.length < maxSize) {
       break;
     }
