@@ -9,7 +9,7 @@
 #import "ZCCChannelInfo.h"
 #import "ZCCProtocol.h"
 
-ZCCChannelInfo ZCCChannelInfoZero() {
+ZCCChannelInfo ZCCChannelInfoZero(void) {
   ZCCChannelInfo info = {
     .status = ZCCChannelStatusUnknown,
     .imagesSupported = NO,

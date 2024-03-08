@@ -13,7 +13,7 @@
 #import "NSURLRequest+ZCCSRWebSocketPrivate.h"
 
 // Required for object file to always be linked.
-void import_NSURLRequest_ZCCSRWebSocket() { }
+void import_NSURLRequest_ZCCSRWebSocket(void) { }
 
 NS_ASSUME_NONNULL_BEGIN
 
