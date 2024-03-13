@@ -15,7 +15,7 @@
 #import "ZCCSRRunLoopThread.h"
 
 // Required for object file to always be linked.
-void import_NSRunLoop_ZCCSRWebSocket() { }
+void import_NSRunLoop_ZCCSRWebSocket(void) { }
 
 @implementation NSRunLoop (ZCCSRWebSocket)
 

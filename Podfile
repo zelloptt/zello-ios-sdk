@@ -11,7 +11,7 @@ target 'ZelloChannelKit' do
   pod 'zello-opus-ios', '~> 1.0.1' # Audio codec
 
   target 'ZelloChannelKitTests' do
-    pod 'OCMock', '3.9.1' # Mocking framework
+    pod 'OCMock', '3.9.3' # Mocking framework
   end
 
 end
