@@ -105,7 +105,7 @@ static void LogWarningForDevelopmentToken(NSString *token) {
 
 @property (nonatomic, strong, readonly, nonnull) ZCCQueueRunner *runner;
 
-@property (nonatomic, copy, readonly) NSString *authToken;
+@property (nonatomic, copy, readonly, nullable) NSString *authToken;
 @property (nonatomic, copy, nullable) NSString *refreshToken;
 @property (nonatomic) NSTimeInterval nextReconnectDelay;
 

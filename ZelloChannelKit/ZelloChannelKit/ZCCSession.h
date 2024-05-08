@@ -3,7 +3,7 @@
 //  sdk
 //
 //  Created by Jim Pickering on 12/4/17.
-//  Copyright © 2018 Zello. All rights reserved.
+//  Copyright © 2018-2024 Zello. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -155,6 +155,7 @@ typedef NS_ENUM(NSInteger, ZCCReconnectReason) {
  *
  * @param token JWT value to authenticate your app to the Zello channels server.
  * See <code>https://github.com/zelloptt/zello-channel-api/blob/master/AUTH.md</code>
+ * The token is required when connecting to consumer Zello, and optional when connecting to a Zello Work network.
  *
  * @param username the username of the account that is connecting. If <code>nil</code> or the empty
  * string, the session will attempt to connect anonymously.
@@ -166,7 +167,7 @@ typedef NS_ENUM(NSInteger, ZCCReconnectReason) {
  * @param queue the queue that <code>ZCCSessionDelegate</code> callbacks are called on. If <code>nil</code>,
  * the delegate callbacks will be called on the main queue.
  */
-- (instancetype)initWithURL:(NSURL *)url authToken:(NSString *)token username:(nullable NSString *)username password:(nullable NSString *)password channel:(NSString *)channel callbackQueue:(nullable dispatch_queue_t)queue NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithURL:(NSURL *)url authToken:(nullable NSString *)token username:(nullable NSString *)username password:(nullable NSString *)password channel:(NSString *)channel callbackQueue:(nullable dispatch_queue_t)queue NS_DESIGNATED_INITIALIZER;
 
 /**
  * @abstract Initializes an anonymous connection session to the Zello channels server.
@@ -181,7 +182,7 @@ typedef NS_ENUM(NSInteger, ZCCReconnectReason) {
  * @param queue the queue that <code>ZCCSessionDelegate</code> callbacks are called on. If <code>nil</code>,
  * the delegate callbacks will be called on the main queue.
  */
-- (instancetype)initWithURL:(NSURL *)url authToken:(NSString *)token channel:(NSString *)channel callbackQueue:(nullable dispatch_queue_t)queue;
+- (instancetype)initWithURL:(NSURL *)url authToken:(nullable NSString *)token channel:(NSString *)channel callbackQueue:(nullable dispatch_queue_t)queue;
 
 /**
  * @abstract Asynchronously disconnect from the server.
